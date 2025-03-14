@@ -6,8 +6,11 @@ import { registerUser } from '../utils/auth'; // Update with path to registerUse
 
 function RegisterForm({ user, updateUser }) {
   const [formData, setFormData] = useState({
-    bio: '',
-    uid: user.uid,
+    uid: user?.uid || '',
+    name: '',
+    nation: '',
+    favoriteDriver: '',
+    favoriteCircuit: '',
   });
 
   const handleSubmit = (e) => {
@@ -18,9 +21,35 @@ function RegisterForm({ user, updateUser }) {
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Gamer Bio</Form.Label>
-        <Form.Control as="textarea" name="bio" required placeholder="Enter your Bio" onChange={({ target }) => setFormData((prev) => ({ ...prev, [target.name]: target.value }))} />
-        <Form.Text className="text-muted">Let other gamers know a little bit about you...</Form.Text>
+        <Form.Label>Got a name, nerd?</Form.Label>
+        <Form.Control
+          as="textarea"
+          name="name"
+          required
+          placeholder="Enter your name"
+          onChange={({ target }) => setFormData((prev) => ({ ...prev, [target.name]: target.value }))}
+        />
+
+        <Form.Text className="text-muted">shh</Form.Text>
+        <Form.Label>Who is your favorite driver?</Form.Label>
+        <Form.Control as="textarea" name="favoriteDriver" required placeholder="choose a favorite driver" onChange={({ target }) => setFormData((prev) => ({ ...prev, [target.name]: target.value }))} />
+
+        <Form.Text className="text-muted">shh</Form.Text>
+        <Form.Label>What is your favorite circuit in formula 1?</Form.Label>
+        <Form.Control as="textarea" name="favoriteCircuit" required placeholder="favorite F1 circuit?" onChange={({ target }) => setFormData((prev) => ({ ...prev, [target.name]: target.value }))} />
+
+        <Form.Text className="text-muted">shh</Form.Text>
+        <Form.Label>What country are you from?</Form.Label>
+        <Form.Control
+          as="textarea"
+          name="nation"
+          required
+          placeholder="Choose a country"
+          value={formData.nation}
+          onChange={({ target }) => setFormData((prev) => ({ ...prev, [target.name]: target.value }))}
+        />
+        <Form.Text className="text-muted">shh</Form.Text>
+
       </Form.Group>
       <Button variant="primary" type="submit">
         Submit
