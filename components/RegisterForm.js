@@ -6,7 +6,7 @@ import { registerUser } from '../utils/auth'; // Update with path to registerUse
 
 function RegisterForm({ user, updateUser }) {
   const [formData, setFormData] = useState({
-    uid: user?.uid || '',
+    uid: user.uid,
     name: '',
     nation: '',
     favoriteDriver: '',
@@ -32,11 +32,11 @@ function RegisterForm({ user, updateUser }) {
 
         <Form.Text className="text-muted">shh</Form.Text>
         <Form.Label>Who is your favorite driver?</Form.Label>
-        <Form.Control as="textarea" name="favoriteDriver" required placeholder="choose a favorite driver" onChange={({ target }) => setFormData((prev) => ({ ...prev, [target.name]: target.value }))} />
+        <Form.Control as="textarea" name="favoriteDriver" required placeholder="choose a favorite driver" onChange={({ target }) => setFormData((prev) => ({ ...prev, [target.favoriteDriver]: target.value }))} />
 
         <Form.Text className="text-muted">shh</Form.Text>
         <Form.Label>What is your favorite circuit in formula 1?</Form.Label>
-        <Form.Control as="textarea" name="favoriteCircuit" required placeholder="favorite F1 circuit?" onChange={({ target }) => setFormData((prev) => ({ ...prev, [target.name]: target.value }))} />
+        <Form.Control as="textarea" name="favoriteCircuit" required placeholder="favorite F1 circuit?" onChange={({ target }) => setFormData((prev) => ({ ...prev, [target.favoriteCircuit]: target.value }))} />
 
         <Form.Text className="text-muted">shh</Form.Text>
         <Form.Label>What country are you from?</Form.Label>
@@ -48,6 +48,7 @@ function RegisterForm({ user, updateUser }) {
           value={formData.nation}
           onChange={({ target }) => setFormData((prev) => ({ ...prev, [target.name]: target.value }))}
         />
+
         <Form.Text className="text-muted">shh</Form.Text>
 
       </Form.Group>
